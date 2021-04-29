@@ -15,6 +15,7 @@ class Test extends Model
     use SoftDeletes;
 
     protected $fillable = ['user_id', 'result'];
+    protected $keyType = 'string';
 
     public static function boot()
     {

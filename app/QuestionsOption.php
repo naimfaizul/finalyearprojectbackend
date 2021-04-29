@@ -17,6 +17,8 @@ class QuestionsOption extends Model
     use SoftDeletes;
     
     protected $fillable = ['option', 'correct', 'question_id'];
+    protected $keyType = 'string';
+    
     
     public static function boot()
     {

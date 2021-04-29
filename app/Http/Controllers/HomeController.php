@@ -31,7 +31,6 @@ class HomeController extends Controller
         $questions = Question::count();
         $users = User::whereNull('role_id')->count();
         $quizzes = Test::count();
-        $average = Test::avg('result');
-        return view('home', compact('questions', 'users', 'quizzes', 'average'));
+        return view('home', compact('questions', 'users', 'quizzes'));
     }
 }

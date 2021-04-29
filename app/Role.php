@@ -15,7 +15,9 @@ class Role extends Model
     use SoftDeletes;
     
     protected $fillable = ['title'];
+    protected $keyType = 'string';
     
+
     public static function boot()
     {
         parent::boot();

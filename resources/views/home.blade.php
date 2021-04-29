@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-default">
-                <div class="panel-heading">Welcome! Here are some numbers about LaraQuiz.</div>
+                <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
                     <div class="row">
@@ -19,10 +19,6 @@
                         <div class="col-md-3 text-center">
                             <h1>{{ $quizzes }}</h1>
                             quizzes taken
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <h1>{{ number_format($average, 2) }} / 10</h1>
-                            average score
                         </div>
                     </div>
                 </div>

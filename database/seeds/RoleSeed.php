@@ -7,7 +7,7 @@ class RoleSeed extends Seeder
 {
     public function run()
     {
-        DB::table((new Role)->getTable())->truncate();
+        DB::table((new Role)->getTable());
 
         Role::insert([
             [

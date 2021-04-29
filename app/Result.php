@@ -19,6 +19,8 @@ class Result extends Model
     use SoftDeletes;
     
     protected $fillable = ['correct', 'date', 'user_id', 'question_id'];
+    protected $keyType = 'string';
+    
     
     public static function boot()
     {

@@ -17,6 +17,8 @@ class TestAnswer extends Model
     use SoftDeletes;
 
     protected $fillable = ['user_id', 'test_id', 'question_id', 'option_id', 'correct'];
+    protected $keyType = 'string';
+    
 
     public static function boot()
     {
