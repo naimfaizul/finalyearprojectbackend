@@ -82,6 +82,14 @@ return [
 			'id' =>'ID',
 		],
 	],
+	'attendance' => [
+		'title' => 'Attendance',
+		'fields' => [
+			'location' => 'Location',
+			'name' => 'Name',
+			'date' => 'Date and Time',
+		],
+	],
 
 	'questions' => [
 		'title' => 'Questions',

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Attendance;
 use Illuminate\Http\Request;
-use App\Forum;
 
-class ForumController extends Controller
+class AttendancesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class ForumController extends Controller
      */
     public function index()
     {
-        $forums = Forum::orderBy('id', 'ASC')->paginate(5);
-        return view('forums.index', compact('forums'));
+        $attendances = Attendance::orderBy('id', 'ASC')->paginate(5);
+        return view('attendances.index', compact('attendances'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ForumController extends Controller
      */
     public function create()
     {
-        return view('forums.create');
+        return view('attendances.create');
     }
 
     /**
@@ -36,14 +37,15 @@ class ForumController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validateForum();
-        $forum = new Forum;
-        $forum->fill([
-            'question' => $request->question,
+        $this->validateAttendance();
+        $attendance = new Attendance;
+        $attendance->fill([
+            'user_id' => Auth::id(),
+            'location' => $request->location,
         ]);
-        $forum->save();
+        $attendance->save();
 
-        return redirect()->route('forums.show', $forum->id)->with('Forum is created.');
+        return redirect()->route('attendances.show', $attendance->id)->with('Attendance is created.');
     }
 
     /**
@@ -52,9 +54,9 @@ class ForumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Forum $forum)
+    public function show(Attendance $attendance)
     {
-        return view('forums.show', compact('forum'));
+        return view('attendances.show', compact('attendance'));
     }
 
     /**
@@ -65,9 +67,9 @@ class ForumController extends Controller
      */
     public function edit($id)
     {
-        $forum = Forum::findOrFail($id);
+        $attendance = Attendance::findOrFail($id);
 
-        return view('forums.edit', compact('forum'));
+        return view('attendances.edit', compact('attendance'));
     }
 
     /**
@@ -77,12 +79,12 @@ class ForumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Forum $forum)
+    public function update(Request $request, Attendance $attendance)
     {
-        $this->validateForum();
-        $forum->update($request->all());
+        $this->validateAttendance();
+        $attendance->update($request->all());
 
-        return redirect()->route('forums.show', $forum->id)->with('success', 'Forum updated successfully.');
+        return redirect()->route('attendances.show', $attendance->id)->with('success', 'attendance updated successfully.');
     }
 
     /**
@@ -91,16 +93,16 @@ class ForumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Forum $forum)
+    public function destroy(Attendance $attendance)
     {
-        $forum->delete();
-        return redirect()->route('forums.index')->with('Forum is deleted');
+        $attendance->delete();
+        return redirect()->route('attendances.index')->with('Attendance is deleted');
     }
 
-    protected function validateForum()
+    protected function validateAttendance()
     {
         return request()->validate([
-            'question' => 'required',
+            'location' => 'required',
         ]);
     }
 }

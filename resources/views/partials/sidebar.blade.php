@@ -12,6 +12,12 @@
                     <span class="title">@lang('quickadmin.forums.title')</span>
                 </a>
             </li>
+            <li class="{{ $request->segment(1) == 'attendance' ? 'active' : '' }}">
+                <a href="{{route('attendances.index')}}">
+                    <i class="fa fa-gears"></i>
+                    <span class="title">@lang('quickadmin.attendance.title')</span>
+                </a>
+            </li>
             <li>
                 <a href="#">
                     <i class="fa fa-users"></i>
