@@ -1,20 +1,20 @@
 <?php
 
 return [
-	'save' => 'Išsaugoti',
-	'update' => 'Atnaujinti',
-	'list' => 'Sąrašas',
-	'no_entries_in_table' => 'Įrašų nėra.',
-	'create' => 'Sukurti',
-	'edit' => 'Redaguoti',
-	'view' => 'Peržiūrėti',
+	'save' => 'Save',
+	'update' => 'update',
+	'list' => 'list',
+	'no_entries_in_table' => 'no entires in table.',
+	'create' => 'create',
+	'edit' => 'edit',
+	'view' => 'view',
 	'custom_controller_index' => 'Papildomo Controller\'io puslapis.',
-	'logout' => 'Atsijungti',
-	'add_new' => 'Pridėti naują',
-	'are_you_sure' => 'Ar esate tikri?',
-	'back_to_list' => 'Grįžti į sąrašą',
-	'dashboard' => 'Pagrindinis',
-	'delete' => 'Trinti',
+	'logout' => 'logout',
+	'add_new' => 'add noew',
+	'are_you_sure' => 'are you sure?',
+	'back_to_list' => 'Back to list',
+	'dashboard' => 'Dasboard',
+	'delete' => 'Delete',
 	'quickadmin_title' => 'Hajj and Umrah Course Management System',
 	
 	'user-management' => [
@@ -63,6 +63,14 @@ return [
 		'fields' => [
 			'id' =>'ID',
 			'question' => 'Question',
+		],
+	],
+	'attendance' => [
+		'title' => 'Attendance',
+		'fields' => [
+			'location' => 'Location',
+			'name' => 'Name',
+			'date' => 'Date and Time',
 		],
 	],
 	
