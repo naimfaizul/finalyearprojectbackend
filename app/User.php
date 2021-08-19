@@ -20,7 +20,7 @@ use Mail;
 */
 class User extends Authenticatable
 {
-    use SoftDeletes, Notifiable, HasApiTokens;
+    use Notifiable, HasApiTokens;
 
     protected $fillable = ['name', 'email', 'password', 'remember_token', 'role_id'];
     protected $keyType = 'string';

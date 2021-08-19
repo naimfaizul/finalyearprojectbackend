@@ -13,41 +13,84 @@ class usersController extends Controller
 
     public function register(Request $request)
     {
-        $user = User::create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password'))
-        ]);
-    
-        return $user;
+        try {
+            $user = User::create([
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'password' => Hash::make($request->get('password')),
+                'role_id' => 2
+            ]);
+
+            $json = [
+                'success' => true,
+                'error' => [
+                    'code' => "200",
+                    'message' => "Register success.",
+                ],
+            ];
+            return response()->json($json, 200);
+        } 
+        catch (Illuminate\Database\QueryException $e) {
+            $json = [
+                'success' => false,
+                'error' => [
+                    'code' => "500",
+                    'message' => "Register failed.",
+                ],
+            ];
+            return response()->json($json, 500);
+        }
+
     }
 
     public function login(Request $request)
     {
-
         $user = User::where('email', $request->get('email'))->first();
         if (!$user) {
-            abort(401, 'Invalid login email or password');
+            $json = [
+                'success' => false,
+                'error' => [
+                    'code' => "401",
+                    'message' => "Invalid credentials. Please try again.",
+                ],
+            ];    
+            return response()->json($json, 401);
         }
+        $name = $user->name;
 
         if (Hash::check($request->get('password'), $user->password)) {
 
             $token = $user->createToken('token')->accessToken;
 
-            return [
-                'user' => $user,
-                'token' => $token
+            $json = [
+                'success' => true,
+                'data' => [
+                    'message' => "Login success.",
+                    'name' => $name
+                ],
             ];
+            return response()->json($json, 200);
         }
-        abort(401, 'Invalid login page');
+
+        $json = [
+            'success' => false,
+            'error' => [
+                'code' => "401",
+                'message' => "Invalid credentials. Please try again.",
+            ],
+        ];    
+        return response()->json($json, 401);
     }
 
     public function update(Request $request)
     {
-       
+        $user = User::where('email', $request->get('email'))->first();
         $user->name = $request->input('name');
-        dd($user);
+        if($request->input('password') != ""){
+            $user->password = Hash::make($request->input("password"));
+        }
+        $user->save();
 
-        return $user;
+        return response()->json("true", 200);
     }
 }

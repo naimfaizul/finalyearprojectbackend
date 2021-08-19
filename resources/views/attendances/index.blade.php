@@ -56,7 +56,7 @@
     </div>
 @stop
 
-@section('javascript')
+@section('')
     <script>
         window.route_mass_crud_entries_destroy = '{{ route('attendances.mass_destroy') }}';
     </script>
