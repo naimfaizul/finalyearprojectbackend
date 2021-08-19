@@ -112,7 +112,7 @@ return [
 	],
 
 	'results' => [
-		'title' => 'My Results',
+		'title' => ' Results',
 		'fields' => [
 			'user' => 'User',
 			'question' => 'Question',

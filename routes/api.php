@@ -11,9 +11,13 @@ Route::post('/register', 'Api\usersController@register');
 Route::post('/login', 'Api\usersController@login');
 Route::post('/update', 'Api\usersController@update');
 
-
-##Forum
 Route::post('/create', 'Api\ForumController@store');
 
-##Attendance
-Route::post('/create', 'Api\AttendancesController@store');
+Route::post('/api');
+
+Route::post('/attendance', 'Api\MiscController@attendance');
+Route::post('/forum', 'Api\MiscController@forum');
+Route::get('/topics', 'Api\MiscController@topics');
+Route::get('/questions', 'Api\MiscController@questions');
+Route::post('/quiz', 'Api\MiscController@quiz');
+Route::post('/result', 'Api\MiscController@result');
